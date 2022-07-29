@@ -16,6 +16,17 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
+        <% if book_favorite.favorited_by?(current_user) %>
+          <p>
+            ️<%= link_to book_favorites_path(book_favorite),method: :delete do %>
+              ❤️<%= book_favorite.favorites.count %>いいね  
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to book_favorites_path(book_favorite), method: :post do %>
+              <%= book_favorite.favorites.count %>
+          </p>
       </tr>
     <% end %>
   </tbody>
