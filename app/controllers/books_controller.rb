@@ -1,8 +1,7 @@
 class BooksController < ApplicationController
-  before_action :correct_user, only: [:edit]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def show
-    @newbook = Book.new
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
   end
@@ -10,7 +9,6 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
-    # @book_one = Book.find(params[:book_id])
   end
 
   def create
