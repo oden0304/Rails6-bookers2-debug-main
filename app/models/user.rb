@@ -35,4 +35,19 @@ class User < ApplicationRecord
   def following?(user) #フォローしているかの判定
     followings.include?(user)
   end
+  
+  #検索方法分岐
+  def self.looks(search,word)
+    if search == "perfect_match" #送られてきたsearchが完全一致だった場合
+      @user = User.where("name LIKE?","#{word}") #whereメソッドでDBから該当データを取得し、変数に代入
+    elsif search == "forward_match" #送られてきたsearchが前方一致だった場合
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match" #送られてきたsearchが後方一致だった場合
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match" #送られてきたsearchが部分一致だった場合
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
 end
