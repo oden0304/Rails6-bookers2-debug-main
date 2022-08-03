@@ -1,6 +1,6 @@
 <h2>Books search for "test"</h2>
 <table class="table">
-  <% if @range == "User" %>
+  <% if @range == "User" %> <!--もし検索範囲（@range）がUser(モデル)だったら-->
     <thead>
       <tr>
         <th></th>
@@ -21,7 +21,7 @@
       </tr>
       <% end %>
     </tbody>
-  <% else %>
+  <% else %><!--検索対象がuser出ない時（Bookモデルの時）-->
     <thead>
       <tr>
         <th></th>
