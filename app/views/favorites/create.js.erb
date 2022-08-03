@@ -1,0 +1,2 @@
+$('.likes_buttons_<%= @book.id %>').html("<%= j(render 'favorites/btn', book: @book) %>");
+<!--classを指定して、その中のビューを非同期で更新している-->

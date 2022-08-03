@@ -1,14 +1,15 @@
 <td>
-  <% if @book.favorited_by?(current_user) %>
+  <% if book.favorited_by?(current_user) %>
   <p>
-    ️<%= link_to book_favorites_path(@book),method: :delete do %>
-      ❤️<%= @book.favorites.count %>いいね  
+    <!--remote: trueを記述することによってjsファイルを探しに行ってくれる-->
+    ️<%= link_to book_favorites_path(book),method: :delete, remote: true do %>
+      ️<i class="fas fa-heart"></i><%= book.favorites.count %> 
     <% end %>
   </p>
   <% else %>
   <p>
-    <%= link_to book_favorites_path(@book), method: :post do %>
-      ♡<%= @book.favorites.count %>いいね
+    <%= link_to book_favorites_path(book), method: :post, remote: true do %>
+      ️<i class="fas fa-heart"></i><%= book.favorites.count %>
     <% end %>   
   <% end %>
   </p>

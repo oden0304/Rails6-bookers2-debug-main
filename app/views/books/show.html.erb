@@ -18,7 +18,9 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-          <%= render "favorites/btn", book: @book %>
+          <div class="likes_buttons_<%= @book.id %>"> <!--classにbook.idをつけることによってどのbookにいいねしたか判別できる-->
+            <%= render "favorites/btn", book: @book %>
+          </div>
           <td>
             <p>コメント数:<%= @book.book_comments.count %></p>
           </td>
