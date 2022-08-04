@@ -9,7 +9,7 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
-  		  <tr>
+  		  <tr id="book_<%= @book.id %>">
           <td>
             <%= link_to(@book.user) do %>
             <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
@@ -21,8 +21,8 @@
           <td class="favorite_book_<%= @book.id %>"> <!--classにbook.idをつけることによってどのbookにいいねしたか判別できる-->
             <%= render "favorites/btn", book: @book %>
           </td>
-          <td>
-            <p>コメント数:<%= @book.book_comments.count %></p>
+          <td id="comment_book">
+            コメント数:<%= @book.book_comments.count %>
           </td>
           <% if @book.user == current_user %>
             <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
@@ -30,7 +30,7 @@
           <% end %>
         </tr>
       </table>
-      <div id="comments_area">
+      <div class="comments_area">
         <%= render "book_comments/index", book: @book %>
       </div>
       <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
