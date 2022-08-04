@@ -1,2 +1,0 @@
-$("#comment_area_<%= @book_comment.id %>").html("<%= j(render 'book_comments/index', book: @book) %>);
-$("#new_comment_<%= @book.id %>").html("<%= j(render 'book_comments/form', book: @book, book_commnet: @book_comment) %>);

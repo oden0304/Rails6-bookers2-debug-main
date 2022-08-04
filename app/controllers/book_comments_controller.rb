@@ -10,7 +10,7 @@ class BookCommentsController < ApplicationController
   
   def destroy
     @book = Book.find(params[:book_id])
-    comment = current_user.book_comments.find_by(book_id: @book.id)
+    comment = BookComment.find(params[:id])
     comment.destroy
     # 非同期通信のためredirect_toは削除
   end
