@@ -7,9 +7,15 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  
+  #相互フォロー同士のDM
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms through: user_rooms
+  
+  #フォロー、フォロワー機能
   has_many :relationships, class_name: 'Relationship', foreign_key: "follower_id", dependent: :destroy #フォローした
   has_many :followings, through: :relationships, source: :followed #@user.followingsでフォローしている人の一覧を表示できる
-  
   has_many :reverce_of_relationships, class_name: 'Relationship', foreign_key: "followed_id", dependent: :destroy #フォローされた
   has_many :followers, through: :reverce_of_relationships,source: :follower #@user.followersでフォローされている人の一覧を表示
   has_one_attached :profile_image
