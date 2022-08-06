@@ -1,10 +1,12 @@
 <% if book.favorited_by?(current_user) %>
   <!--remote: trueを記述することによってjsファイルを探しに行ってくれる-->
   ️<%= link_to book_favorites_path(book), method: :delete, remote: true do %>
-    ️<i class="fas fa-heart"></i><%= book.favorites.count %>
+    ️<i class="fas fa-heart" style="color: red;"></i>
+    <%= book.favorites.count %>
   <% end %>
 <% else %>
   <%= link_to book_favorites_path(book), method: :post, remote: true do %>
-    ️<i class="fas fa-heart"></i><%= book.favorites.count %>
+    ️<i class="fas fa-heart"></i>
+    <%= book.favorites.count %>
   <% end %>   
 <% end %>
