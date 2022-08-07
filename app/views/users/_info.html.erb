@@ -22,7 +22,27 @@
     <%= link_to user_followers_path(user) do %>
       <%= user.followers.count %>
     <% end %>
-    </th>
+  </th>
+  <tr>
+    <% unless user == current_user %>
+      <% if current_user.following?(user) %>
+      <th>
+        <%= link_to user_relationships_path(user.id), method: :delete do %>
+          <button type="button" class="btn btn-danger">フォロー外す</button>
+        <% end %>
+      </th>
+        <th>
+          <%= link_to "chatを始める", chat_path(user.id) %>
+        </th>
+      <% else %>
+      <th>
+        <%= link_to user_relationships_path(user.id), method: :post do %>
+          <button type="button" class="btn btn-primary">フォローする</button>
+        <% end %>
+      </th>
+      <th></th>
+      <% end %>
+    <% end %>
   </tr>
 </table>
 　
