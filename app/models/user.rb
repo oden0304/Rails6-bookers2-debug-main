@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :favorites,dependent: :destroy
   has_many :book_comments, dependent: :destroy
   
+  has_many :view_counts, dependent: :destroy
+  
   #相互フォロー同士のDM
   has_many :user_rooms
   has_many :chats
